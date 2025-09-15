@@ -128,6 +128,10 @@ public class CordovaResourceApi {
         if (PLUGIN_URI_SCHEME.equalsIgnoreCase(scheme)) {
             return URI_TYPE_PLUGIN;
         }
+        
+        if (scheme.equalsIgnoreCase("file")) {
+            return URI_TYPE_FILE;
+        }
         return URI_TYPE_UNKNOWN;
     }
 
@@ -392,15 +396,15 @@ public class CordovaResourceApi {
     }
 
     private void assertBackgroundThread() {
-        if (threadCheckingEnabled) {
-            Thread curThread = Thread.currentThread();
-            if (curThread == Looper.getMainLooper().getThread()) {
-                throw new IllegalStateException("Do not perform IO operations on the UI thread. Use CordovaInterface.getThreadPool() instead.");
-            }
-            if (curThread == jsThread) {
-                throw new IllegalStateException("Tried to perform an IO operation on the WebCore thread. Use CordovaInterface.getThreadPool() instead.");
-            }
-        }
+//        if (threadCheckingEnabled) {
+//            Thread curThread = Thread.currentThread();
+//            if (curThread == Looper.getMainLooper().getThread()) {
+//                throw new IllegalStateException("Do not perform IO operations on the UI thread. Use CordovaInterface.getThreadPool() instead.");
+//            }
+//            if (curThread == jsThread) {
+//                throw new IllegalStateException("Tried to perform an IO operation on the WebCore thread. Use CordovaInterface.getThreadPool() instead.");
+//            }
+//        }
     }
 
     private String getDataUriMimeType(Uri uri) {
